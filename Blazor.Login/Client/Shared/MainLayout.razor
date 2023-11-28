@@ -1,0 +1,37 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager navigationManager
+@inject CustomStateProvider authStateProvider
+
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="top-row">
+        <AuthorizeView>
+            <Authorized>
+                <button type="button" class="btn btn-link ml-md-auto" @onclick="@LogoutClick">Logout</button>
+            </Authorized>
+            <NotAuthorized>
+                <NavLink href="login">
+                    <h6 class="font-weight-normal text-center">Login</h6>
+                </NavLink>
+                <NavLink href="register">
+                    <h6 class="font-weight-normal text-center">Register</h6>
+                </NavLink>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
+
+@functions {
+    async Task LogoutClick()
+    {
+        await authStateProvider.Logout();
+        navigationManager.NavigateTo("");
+    }
+}
