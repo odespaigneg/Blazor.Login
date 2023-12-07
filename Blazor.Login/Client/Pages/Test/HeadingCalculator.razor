@@ -1,0 +1,13 @@
+﻿<h3>@Title</h3>
+<input @bind="Title" @bind:event="onchange" />
+<button class="btn btn-primary" @onclick="UpdateTitle">Update Title</button>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "Default Title";
+
+    private void UpdateTitle()
+    {
+        Title = "Hello, Blazor!";
+    }
+}

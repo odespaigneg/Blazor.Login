@@ -49,21 +49,3 @@ else
         </tbody>
     </table>
 }
-@code {
-    Developer[] developers { get; set; }
-    protected override async Task OnInitializedAsync()
-    {
-        developers = await client.GetFromJsonAsync<Developer[]>("api/developer");
-    }
-
-    async Task Delete(int developerId)
-    {
-        var dev = developers.First(x => x.Id == developerId);
-        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {dev.FirstName}'s ({dev.Id}) Record?"))
-        {
-            await client.DeleteAsync($"api/developer/{developerId}");
-            await OnInitializedAsync();
-        }
-    }
-}
-

@@ -1,0 +1,69 @@
+﻿@page "/CardDesigner"
+<style>
+    .container {
+        margin: 15px;
+        padding: 0px;
+    }
+
+    .col-8, .col-4 {
+        border: 1px solid #dadada;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+</style>
+<h1>Card Designer (Blazor Data Binding)</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h3>Design</h3>
+            <form>
+                <div class="form-group">
+                    <label for="Style">Style</label>
+                    <select class="form-control" id="Style" @bind="SelectedStyleCssClass" @bind:event="onchange">
+                        @foreach (var style in Styles)
+                        {
+                            <option value="@style.CssClass">@style.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Heading">Heading</label>
+                    <input type="text" class="form-control" id="Heading" @bind="Heading"
+                           @onchange="UpdateHeading" @bind:event="oninput">
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea class="form-control" id="Description" rows="4" @bind="Description"
+                              @onchange="UpdateDescription" @bind:event="oninput"></textarea>
+                </div>
+                <button class="btn btn-secondary mb-2" @onclick="ResetCard">Reset</button>
+            </form>
+        </div>
+        <div class="col-4">
+            <h3>Preview</h3>
+            <div class="card text-white w-100 @SelectedStyleCssClass">
+                <div class="card-header">
+                    @Heading
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        @Description
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

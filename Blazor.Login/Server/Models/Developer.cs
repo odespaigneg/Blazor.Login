@@ -1,9 +1,7 @@
 ﻿namespace Blazor.Login.Shared.Models
 {
-    public class Developer
-    {
-        public int Id { get; set; }
-
+    public class Developer : BaseEntity
+    {       
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

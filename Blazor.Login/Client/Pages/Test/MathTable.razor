@@ -1,0 +1,21 @@
+﻿@page "/MathTable/{number:int}"
+
+<h3>Math Table</h3>
+
+<table class="table table-bordered w-25">
+    @for (int i = 1; i <= 10; i++)
+    {
+        <tr>
+            <td>@Number</td>
+            <td>x</td>
+            <td>@i</td>
+            <td>=</td>
+            <td>@(Number * i)</td>
+        </tr>
+    }
+</table>
+
+@code {
+    [Parameter]
+    public int Number { get; set; }
+}
