@@ -23,6 +23,28 @@ namespace Blazor.Login.Client
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IProductService, ProductService>();
 
+            // Note: not need if you use typed httpclient with the specification
+            //builder.Services.AddScoped<IHolidaysApiService, HolidaysApiService>();
+
+            // IHttpClientFactory
+            builder.Services.AddHttpClient();
+
+            // Named HttpClient
+            builder.Services.AddHttpClient("HolidaysApi", c =>
+            {
+                c.BaseAddress = new Uri("https://date.nager.at/");
+                c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+            });
+
+            // Typed HttpClient
+            //builder.Services.AddHttpClient<HolidaysApiService>();
+            builder.Services.AddHttpClient<IHolidaysApiService, HolidaysApiService>(c =>
+            {
+                c.BaseAddress = new Uri("https://date.nager.at/");
+                c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+            });
+
+            // Local HttpClient
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             await builder.Build().RunAsync();

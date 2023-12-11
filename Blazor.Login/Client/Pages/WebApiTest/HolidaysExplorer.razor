@@ -1,0 +1,43 @@
+﻿@page "/holidays"
+<h3>Holidays Explorer</h3>
+<br />
+
+<EditForm Model="@HolidaysModel" OnValidSubmit="@HandleValidSubmit" class="form-inline">
+
+    <label class="ml-2">Country Code:</label>
+    <InputText id="CountryCode" @bind-Value="HolidaysModel.CountryCode" class="form-control" />
+
+    <label class="ml-2">Year:</label>
+    <InputNumber id="Year" @bind-Value="HolidaysModel.Year" class="form-control" />
+
+    <button class="btn btn-primary ml-2" type="submit">Submit</button>
+
+</EditForm>
+
+<br />
+@if (Holidays.Count > 0)
+{
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Local Name</th>
+                <th>Country Code</th>
+                <th>Global</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Holidays)
+            {
+                <tr>
+                    <td>@item.Date.Value.ToShortDateString()</td>
+                    <td>@item.Name</td>
+                    <td>@item.LocalName</td>
+                    <td>@item.CountryCode</td>
+                    <td>@item.Global</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -5,14 +5,12 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Linq;
 using Blazor.Login.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Blazor.Login.Server.Models;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
+using Blazor.Login.Client;
 
 namespace Blazor.Login.Server
 {
@@ -52,6 +50,14 @@ namespace Blazor.Login.Server
                 options.Cookie.HttpOnly = true;
             });
 
+            services.AddCors(policy =>
+            {
+                policy.AddPolicy("CorsPolicy", opt => opt
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            });
+
             services.AddControllers().AddNewtonsoftJson();
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -87,6 +93,8 @@ namespace Blazor.Login.Server
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
+
+            app.UseCors("CorsPolicy");
         }
     }
 }
