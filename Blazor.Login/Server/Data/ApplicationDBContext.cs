@@ -1,5 +1,4 @@
 ﻿using Blazor.Login.Server.Models;
-using Blazor.Login.Shared.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +12,8 @@ namespace Blazor.Login.Server.Data
 
         public DbSet<Developer> Developers { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
     }
 }

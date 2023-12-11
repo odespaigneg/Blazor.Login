@@ -1,15 +1,42 @@
 ﻿@page "/counter"
-<h1>Counter</h1>
+@page "/counter/{title}"
+@page "/counter/{title}/{start:int}"
+@page "/counter/{title}/{start:int}/{increment:int}"
+
+<h1>@Title</h1>
 
 <p>Current count: @currentCount</p>
+<p>Current count: @Start</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
     private int currentCount = 0;
 
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public int? Start { get; set; }
+
+    [Parameter]
+    public int? Increment { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Title = Title ?? "Counter";
+    }
+
     private void IncrementCount()
     {
         currentCount++;
+        Start++;
+        Start += Increment;
+    }
+
+    public async override Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        Title = Title ?? "Counter";
     }
 }

@@ -8,7 +8,7 @@
             OnValidSubmit="@CreateDeveloper" />
 
 @code {
-    Developer dev = new Developer();
+    DeveloperDto dev = new DeveloperDto();
     async Task CreateDeveloper()
     {
         await http.PostAsJsonAsync("api/developer", dev);

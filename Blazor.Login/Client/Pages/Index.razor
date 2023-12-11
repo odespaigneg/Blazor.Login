@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager nvm
 
 <AuthorizeView>
     <Authorized>
@@ -12,3 +13,29 @@
         <h1>Loading ...</h1>
     </Authorizing>
 </AuthorizeView>
+
+<h3>Navigation Manager</h3>
+<br />
+
+<p>@nvm.Uri</p>
+<p>@nvm.BaseUri</p>
+
+<button class="btn btn-primary" @onclick="GoToHome">
+    Home Page
+</button>
+
+<button class="btn btn-primary" @onclick="GoToCounter">
+    Counter Page
+</button>
+
+@code {
+    private void GoToHome()
+    {
+        nvm.NavigateTo("/");
+    }
+
+    private void GoToCounter()
+    {
+        nvm.NavigateTo("counter");
+    }
+}

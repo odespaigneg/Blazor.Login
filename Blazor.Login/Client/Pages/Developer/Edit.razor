@@ -10,11 +10,11 @@
 
 @code {
     [Parameter] public int developerId { get; set; }
-    Developer dev = new Developer();
+    DeveloperDto dev = new DeveloperDto();
 
     protected async override Task OnParametersSetAsync()
     {
-        dev = await http.GetFromJsonAsync<Developer>($"api/developer/{developerId}");
+        dev = await http.GetFromJsonAsync<DeveloperDto>($"api/developer/{developerId}");
     }
 
     async Task EditDeveloper()

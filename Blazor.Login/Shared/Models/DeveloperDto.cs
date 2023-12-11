@@ -1,6 +1,6 @@
 ﻿namespace Blazor.Login.Shared.Models
 {
-    public class Developer
+    public class DeveloperDto
     {
         public int Id { get; set; }
 

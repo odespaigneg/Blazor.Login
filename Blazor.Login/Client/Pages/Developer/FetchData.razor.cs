@@ -9,16 +9,16 @@ namespace Blazor.Login.Client.Pages.Developer
 {
     public partial class FetchData
     {
-        SharedModel.Developer[] developers { get; set; }
+        SharedModel.DeveloperDto[] developers { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            developers = await client.GetFromJsonAsync<SharedModel.Developer[]>("api/developer");
+            developers = await client.GetFromJsonAsync<SharedModel.DeveloperDto[]>("api/developer");
         }
 
         async Task Delete(int developerId)
         {
-            SharedModel.Developer dev = developers.First(x => x.Id == developerId);
+            SharedModel.DeveloperDto dev = developers.First(x => x.Id == developerId);
 
             if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {dev.FirstName}'s ({dev.Id}) Record?"))
             {

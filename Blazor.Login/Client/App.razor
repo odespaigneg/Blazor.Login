@@ -4,8 +4,12 @@
     </Found>
     <NotFound>
         <CascadingAuthenticationState>
-            <LayoutView Layout="@typeof(MainLayout)">
-                <p>Sorry, there's nothing at this address.</p>
+            <LayoutView Layout="@typeof(ErrorLayout)">
+                <h1 class="display-1">404</h1>
+                <h1 class="display-4">Not Found</h1>
+                <p class="lead">
+                    Oops! Looks like this page doesn't exist.
+                </p>
             </LayoutView>
         </CascadingAuthenticationState>
     </NotFound>

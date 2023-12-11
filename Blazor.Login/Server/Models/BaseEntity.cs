@@ -1,4 +1,4 @@
-﻿namespace Blazor.Login.Shared.Models
+﻿namespace Blazor.Login.Server.Models
 {
     public abstract class BaseEntity
     {
