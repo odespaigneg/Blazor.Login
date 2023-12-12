@@ -1,0 +1,22 @@
+﻿@typeparam TItem
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-green">
+        <tr>
+            @HeaderTemplateDemo
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <tr>
+                @RowTemplateDemo(item)
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            @FooterTemplateDemo
+        </tr>
+    </tfoot>
+</table>

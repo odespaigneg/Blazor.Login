@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject NavigationManager nvm
+@using Blazor.Login.Library.Demo
 
 <AuthorizeView>
     <Authorized>
@@ -13,6 +14,14 @@
         <h1>Loading ...</h1>
     </Authorizing>
 </AuthorizeView>
+
+<h4>Showing Image from a Component available inside Class Library</h4>
+
+<BlazorLogo></BlazorLogo>
+
+<h4>Showing Image directly from Class Library</h4>
+
+<img src="_content/Blazor.Login.Library.Demo/images/blazor_logo.jpg" alt="Blazor Logo" />
 
 <h3>Navigation Manager</h3>
 <br />
